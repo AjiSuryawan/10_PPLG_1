@@ -34,8 +34,10 @@ public class LoginView extends AppCompatActivity {
             public void onClick(View v) {
                 if (txtEmail.getText().toString().equals("admin")
                         && txtPassword.getText().toString().equals("12345")){
+
                     editor.putString("username", txtEmail.getText().toString());
                     editor.commit();
+
                     Intent intent = new Intent(LoginView.this,MainMenu.class);
                     startActivity(intent);
                     finish();

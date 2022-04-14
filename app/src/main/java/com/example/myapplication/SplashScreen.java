@@ -9,6 +9,7 @@ import android.os.Handler;
 
 public class SplashScreen extends AppCompatActivity {
 
+    // deklarasi
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     String username;
@@ -18,6 +19,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
+        // inisialisasi
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
 
@@ -42,4 +44,5 @@ public class SplashScreen extends AppCompatActivity {
             }
         },2000);
     }
+
 }
