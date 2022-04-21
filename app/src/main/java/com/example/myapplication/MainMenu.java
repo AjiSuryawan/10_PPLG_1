@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -38,7 +39,9 @@ public class MainMenu extends AppCompatActivity {
                 new RecyclerItemClickListener(getApplicationContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(MainMenu.this, myListData[position].getDescription(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainMenu.this, myListData[position].getDescription(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext() , DetailActivity.class);
+                        startActivity(intent);
                         //pindah ke halaman detail
                     }
                     @Override public void onLongItemClick(View view, int position) {
