@@ -12,30 +12,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainMenu extends AppCompatActivity {
     RecyclerView recyclerView;
-    MyListData[] myListData;
+    ArrayList<MyListData> myListData;
+    MyListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        myListData = new MyListData[] {
-                new MyListData("Email", android.R.drawable.ic_dialog_email),
-                new MyListData("Info", android.R.drawable.ic_dialog_info),
-                new MyListData("Delete", android.R.drawable.ic_delete),
-                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
-                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
-                new MyListData("Map", android.R.drawable.ic_dialog_map),
-                new MyListData("Email", android.R.drawable.ic_dialog_email),
-                new MyListData("Info", android.R.drawable.ic_dialog_info),
-                new MyListData("Delete", android.R.drawable.ic_delete),
-                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
-                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
-                new MyListData("Map", android.R.drawable.ic_dialog_map),
-        };
+        myListData = new ArrayList<>();
+        myListData.add(new MyListData("Email", android.R.drawable.ic_dialog_email));
+        myListData.add(new MyListData("Info", android.R.drawable.ic_dialog_info));
+        myListData.add(new MyListData("Delete", android.R.drawable.ic_delete));
+        myListData.add(new MyListData("Dialer", android.R.drawable.ic_dialog_dialer));
+        myListData.add(new MyListData("Alert", android.R.drawable.ic_dialog_alert));
+        myListData.add(new MyListData("Map", android.R.drawable.ic_dialog_map));
 
         recyclerView = (RecyclerView) findViewById(R.id.rvlistdata);
-        MyListAdapter adapter = new MyListAdapter(myListData);
+        adapter = new MyListAdapter(myListData);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -67,10 +63,11 @@ public class MainMenu extends AppCompatActivity {
         int position = ((MyListAdapter)recyclerView.getAdapter()).getPosition();
         switch (item.getItemId()) {
             case R.id.call:
-                Toast.makeText(this, "You select Copy for: "+myListData[position].getDescription(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You select Copy for: "+myListData.get(position).getDescription(), Toast.LENGTH_SHORT).show();
+
                 return true;
             case R.id.sms:
-                Toast.makeText(this, "You select Paste for: "+myListData[position].getDescription(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You select Paste for: "+myListData.get(position).getDescription(), Toast.LENGTH_SHORT).show();
                 return true;
         }
 
