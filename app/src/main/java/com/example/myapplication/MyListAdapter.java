@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
-    private MyListData[] listdata;
+    private ArrayList<MyListData> listdata;
     private int position;
 
     public int getPosition() {
@@ -23,7 +25,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     }
 
     // RecyclerView recyclerView;
-    public MyListAdapter(MyListData[] listdata) {
+    public MyListAdapter(ArrayList<MyListData> listdata) {
         this.listdata = listdata;
     }
     @Override
@@ -36,9 +38,9 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        final MyListData myListData = listdata[position];
-        holder.textView.setText(listdata[position].getDescription());
-        holder.imageView.setImageResource(listdata[position].getImgId());
+        final MyListData myListData = listdata.get(position);
+        holder.textView.setText(listdata.get(position).getDescription());
+        holder.imageView.setImageResource(listdata.get(position).getImgId());
         // add this below
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -55,7 +57,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
