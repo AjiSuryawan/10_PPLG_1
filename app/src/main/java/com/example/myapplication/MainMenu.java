@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -62,12 +64,40 @@ public class MainMenu extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int position = ((MyListAdapter)recyclerView.getAdapter()).getPosition();
         switch (item.getItemId()) {
-            case R.id.call:
+            case R.id.delete:
+
                 Toast.makeText(this, "You select Copy for: "+myListData.get(position).getDescription(), Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Confirm");
+                builder.setMessage("Are you sure want to delete this file ?");
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                        myListData.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
 
                 return true;
-            case R.id.sms:
-                Toast.makeText(this, "You select Paste for: "+myListData.get(position).getDescription(), Toast.LENGTH_SHORT).show();
+            case R.id.edit:
+                Toast.makeText(this, "You select for: "+myListData.get(position).getDescription(), Toast.LENGTH_SHORT).show();
                 return true;
         }
 
